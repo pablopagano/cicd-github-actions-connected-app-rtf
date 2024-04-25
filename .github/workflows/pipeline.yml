@@ -49,9 +49,40 @@ jobs:
       with:
           name: artifacts
           path: target/*.jar          
-        
-  deploy:
+
+  upload:
     needs: build
+    runs-on: ubuntu-latest
+    env:
+      CA_CLIENT_ID: ${{ secrets.CA_CLIENT_ID }}
+      CA_CLIENT_SECRET: ${{ secrets.CA_CLIENT_SECRET }}
+
+    steps:    
+    
+    - uses: actions/checkout@v3
+    
+    - uses: actions/cache@v3
+      with:
+        path: ~/.m2/repository
+        key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
+        restore-keys: |
+          ${{ runner.os }}-maven-
+    
+    - uses: actions/download-artifact@master
+      with:
+        name: artifacts
+    
+    - name: Upload to Exchange
+      run: |
+        artifactName=$(ls *.jar | head -1)
+        mvn deploy \
+         -s .maven/settings.xml \
+         -Dmule.artifact=$artifactName \
+       
+    
+  
+  deploy:
+    needs: upload
     runs-on: ubuntu-latest
     env:
       CA_CLIENT_ID: ${{ secrets.CA_CLIENT_ID }}
