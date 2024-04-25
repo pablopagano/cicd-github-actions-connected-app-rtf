@@ -4,7 +4,7 @@
 
 	<groupId>e2db758a-a779-46e3-a4f1-e3e8522a390d</groupId>
 	<artifactId>cicd-github-actions-connected-app-rtf</artifactId>
-	<version>1.0.3</version>
+	<version>1.0.4</version>
 	<packaging>mule-application</packaging>
 
 	<name>cicd-github-actions-connected-app-rtf</name>
@@ -56,7 +56,7 @@
                                                </resources>
                                                <http>
                                                            <inbound>
-                                                                       <publicUrl>http://rtf.example.com</publicUrl>
+                                                                       <publicUrl>http://rtf.example.com/cicd-github-actions-connected-app-rtf</publicUrl>
                                                            </inbound>
                                                </http>
                                     </deploymentSettings>
