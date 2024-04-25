@@ -4,7 +4,7 @@
 
 	<groupId>e2db758a-a779-46e3-a4f1-e3e8522a390d</groupId>
 	<artifactId>cicd-github-actions-connected-app-rtf</artifactId>
-	<version>1.0.0</version>
+	<version>1.0.1</version>
 	<packaging>mule-application</packaging>
 
 	<name>cicd-github-actions-connected-app-rtf</name>
@@ -36,7 +36,7 @@
 									<server>ca.anypoint.credentials</server>
                                     <applicationName>cicd-github-actions-connected-app-rtf</applicationName>
                                     <target>rtf-test-pgp-runtime-fabric</target>
-                                    <environment>Sandbox</environment>
+                                    <environment>dev</environment>
                                     <provider>MC</provider>
                                     <replicas>1</replicas>
                                     <deploymentSettings>
