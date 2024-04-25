@@ -17,7 +17,8 @@ output application/json
 ---
 {
 	"status": "Success",
-	"message": "Hello World"
+	"message": "Hello World",
+	"timeStamp": now()
 }]]></ee:set-payload>
 			</ee:message>
 		</ee:transform>
