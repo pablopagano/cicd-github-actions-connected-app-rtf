@@ -7,11 +7,34 @@
         </server>
         <server>
             <id>MuleRepository</id>
-            <username>ppaganosalesforcemia</username>
-            <password>PheasantSteel4943</password>
+            <username>~~~Client~~~</username>
+            <password>${CA_CLIENT_ID}~?~${CA_CLIENT_SECRET}</password>
         </server>        
     </servers>
+      <pluginGroups>
+    <pluginGroup>org.mule.tools</pluginGroup>
+  </pluginGroups>
     <profiles>
+        <profile>
+          <id>mule-extra-repos</id>
+          <activation>
+            <activeByDefault>true</activeByDefault>
+          </activation>
+
+          <repositories>
+            <repository>
+              <id>mule-public</id>
+              <url>https://repository.mulesoft.org/nexus/content/repositories/public</url>
+            </repository>
+          </repositories>
+
+          <pluginRepositories>
+            <pluginRepository>
+              <id>mule-public</id>
+              <url>https://repository.mulesoft.org/nexus/content/repositories/public</url>
+            </pluginRepository>
+          </pluginRepositories>
+        </profile>
         <profile>
             <id>Mule</id>
             <activation>
@@ -30,6 +53,18 @@
                         <enabled>true</enabled>
                     </snapshots>
                 </repository>
+                 <repository>
+                  <id>MuleRepositoryPublic</id>
+                  <name>MuleRepositoryPublic</name>
+                  <url>https://repository.mulesoft.org/nexus/content/repositories/public</url>
+                  <layout>default</layout>
+                  <releases>
+                    <enabled>true</enabled>
+                  </releases>
+                  <snapshots>
+                    <enabled>true</enabled>
+                  </snapshots>
+                </repository>                   
             </repositories>
 
         </profile>
