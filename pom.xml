@@ -4,7 +4,7 @@
 
 	<groupId>e2db758a-a779-46e3-a4f1-e3e8522a390d</groupId>
 	<artifactId>cicd-github-actions-connected-app-rtf</artifactId>
-	<version>1.0.9</version>
+	<version>1.0.10</version>
 	<packaging>mule-application</packaging>
 
 	<name>cicd-github-actions-connected-app-rtf</name>
@@ -15,6 +15,7 @@
 
 		<app.runtime>4.6.1</app.runtime>
 		<mule.maven.plugin.version>4.1.1</mule.maven.plugin.version>
+		<munit.version>3.1.0</munit.version>
 	</properties>
 
 	<build>
@@ -29,40 +30,63 @@
 				<artifactId>mule-maven-plugin</artifactId>
 				<version>${mule.maven.plugin.version}</version>
 				<extensions>true</extensions>
-				 <configuration>
-                        <runtimeFabricDeployment>
-                                    <uri>https://anypoint.mulesoft.com</uri>
-                                    <muleVersion>4.6.1</muleVersion>
-                                    <releaseChannel>LTS</releaseChannel>
-									<server>ca.anypoint.credentials</server>
-                                    <applicationName>cicd-github-actions-connected-app-rtf</applicationName>
-                                    <target>rtf-test-pgp-runtime-fabric</target>
-                                    <environment>dev</environment>
-                                    <provider>MC</provider>
-                                    <replicas>1</replicas>
-                                    <deploymentSettings>
-                                                <enforceDeployingReplicasAcrossNodes>false</enforceDeployingReplicasAcrossNodes>
-                                               <updateStrategy>rolling</updateStrategy>
-                                               <clustered>false</clustered>
-                                               <forwardSslSession>false</forwardSslSession>
-                                               <lastMileSecurity>false</lastMileSecurity>
-                                               <resources>
-                                                           <cpu>
-                                                                       <reserved>20m</reserved>
-                                                                       <limit>1000m</limit>
-                                                           </cpu>
-                                                           <memory>
-                                                                       <reserved>700Mi</reserved>
-                                                           </memory>
-                                               </resources>
-                                               <http>
-                                                           <inbound>
-                                                                       <publicUrl>http://rtf.example.com/cicd-github-actions-connected-app-rtf</publicUrl>
-                                                           </inbound>
-                                               </http>
-                                    </deploymentSettings>
-                        </runtimeFabricDeployment>
-            </configuration>
+				<configuration>
+					<runtimeFabricDeployment>
+						<uri>https://anypoint.mulesoft.com</uri>
+						<muleVersion>4.6.1</muleVersion>
+						<releaseChannel>LTS</releaseChannel>
+						<server>ca.anypoint.credentials</server>
+						<applicationName>cicd-github-actions-connected-app-rtf</applicationName>
+						<target>rtf-test-pgp-runtime-fabric</target>
+						<environment>dev</environment>
+						<provider>MC</provider>
+						<replicas>1</replicas>
+						<deploymentSettings>
+							<enforceDeployingReplicasAcrossNodes>false</enforceDeployingReplicasAcrossNodes>
+							<updateStrategy>rolling</updateStrategy>
+							<clustered>false</clustered>
+							<forwardSslSession>false</forwardSslSession>
+							<lastMileSecurity>false</lastMileSecurity>
+							<resources>
+								<cpu>
+									<reserved>20m</reserved>
+									<limit>1000m</limit>
+								</cpu>
+								<memory>
+									<reserved>700Mi</reserved>
+								</memory>
+							</resources>
+							<http>
+								<inbound>
+									<publicUrl>http://rtf.example.com/cicd-github-actions-connected-app-rtf</publicUrl>
+								</inbound>
+							</http>
+						</deploymentSettings>
+					</runtimeFabricDeployment>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>com.mulesoft.munit.tools</groupId>
+				<artifactId>munit-maven-plugin</artifactId>
+				<version>${munit.version}</version>
+				<executions>
+					<execution>
+						<id>test</id>
+						<phase>test</phase>
+						<goals>
+							<goal>test</goal>
+							<goal>coverage-report</goal>
+						</goals>
+					</execution>
+				</executions>
+				<configuration>
+					<coverage>
+						<runCoverage>true</runCoverage>
+						<formats>
+							<format>html</format>
+						</formats>
+					</coverage>
+				</configuration>
 			</plugin>
 		</plugins>
 	</build>
@@ -86,6 +110,26 @@
 			<artifactId>mule-sockets-connector</artifactId>
 			<version>1.2.4</version>
 			<classifier>mule-plugin</classifier>
+		</dependency>
+		<dependency>
+			<groupId>com.mulesoft.munit</groupId>
+			<artifactId>munit-runner</artifactId>
+			<version>3.1.0</version>
+			<classifier>mule-plugin</classifier>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>com.mulesoft.munit</groupId>
+			<artifactId>munit-tools</artifactId>
+			<version>3.1.0</version>
+			<classifier>mule-plugin</classifier>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.mule.weave</groupId>
+			<artifactId>assertions</artifactId>
+			<version>1.2.1</version>
+			<scope>test</scope>
 		</dependency>
 	</dependencies>
 

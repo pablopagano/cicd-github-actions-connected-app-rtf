@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:munit="http://www.mulesoft.org/schema/mule/munit" xmlns:munit-tools="http://www.mulesoft.org/schema/mule/munit-tools"
+	xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xsi:schemaLocation="
+		http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+		http://www.mulesoft.org/schema/mule/munit http://www.mulesoft.org/schema/mule/munit/current/mule-munit.xsd
+		http://www.mulesoft.org/schema/mule/munit-tools  http://www.mulesoft.org/schema/mule/munit-tools/current/mule-munit-tools.xsd">
+	<munit:config name="cicd-github-actions-connected-app-rtf-suite.xml" />
+	<munit:test name="cicd-github-actions-connected-appFlow-test" doc:id="563d27f3-0c03-4a43-9689-4c57bc6c0ebb" >
+		<munit:behavior >
+			<munit:set-event doc:name="Set Input" doc:id="9853aae7-de82-4eab-9338-39bf7fb4f5c4" >
+				<munit:payload value="#[readUrl('classpath://cicdgithubactionsconnectedappFlowtest/set-event_payload.dwl')]" encoding="UTF-8" />
+				<munit:attributes value="#[readUrl('classpath://cicdgithubactionsconnectedappFlowtest/set-event_attributes.dwl')]" />
+			</munit:set-event>
+		</munit:behavior>
+		<munit:execution >
+			<flow-ref doc:name="Flow-ref to cicd-github-actions-connected-appFlow" doc:id="cfe3efbf-eb35-4c81-8bba-a578e7186d7e" name="cicd-github-actions-connected-appFlow"/>
+		</munit:execution>
+		<munit:validation >
+			<munit-tools:verify-call doc:name="Verify Logger" doc:id="2c7c196e-7fbe-4d82-8725-fe03cb4536e9" processor="logger" times="1">
+				<munit-tools:with-attributes >
+					<munit-tools:with-attribute whereValue="543a9353-b8be-4666-b17c-4637d31bd5a8" attributeName="doc:id" />
+				</munit-tools:with-attributes>
+			</munit-tools:verify-call>
+			<munit-tools:verify-call doc:name="Verify Transform Message" doc:id="56392aac-6a6b-42b0-8b9d-225b5986faf1" processor="ee:transform" times="1">
+				<munit-tools:with-attributes >
+					<munit-tools:with-attribute whereValue="11de304a-983d-4410-839e-c898e73947bf" attributeName="doc:id" />
+				</munit-tools:with-attributes>
+			</munit-tools:verify-call>
+			<munit-tools:verify-call doc:name="Verify Set Variable" doc:id="4b2b984b-5a87-4669-b374-554fff9cfa80" processor="set-variable" times="1">
+				<munit-tools:with-attributes >
+					<munit-tools:with-attribute whereValue="6603b201-200d-4817-a04e-81fae66cf8ed" attributeName="doc:id" />
+				</munit-tools:with-attributes>
+			</munit-tools:verify-call>
+		</munit:validation>
+	</munit:test>
+
+</mule>
