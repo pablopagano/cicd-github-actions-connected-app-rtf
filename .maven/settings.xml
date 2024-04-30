@@ -7,8 +7,8 @@
         </server>
         <server>
             <id>MuleRepository</id>
-            <username>~~~Client~~~</username>
-            <password>${CA_CLIENT_ID}~?~${CA_CLIENT_SECRET}</password>
+            <username>ppaganosalesforcemia</username>
+            <password>PheasantSteel4943</password>
         </server>        
     </servers>
     <profiles>
