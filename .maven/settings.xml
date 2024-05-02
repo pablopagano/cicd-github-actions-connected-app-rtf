@@ -7,8 +7,8 @@
         </server>
         <server>
             <id>MuleRepository</id>
-            <username>~~~Client~~~</username>
-            <password>${CA_CLIENT_ID}~?~${CA_CLIENT_SECRET}</password>
+            <username>ppagano</username>
+            <password>VWg*Qw.3Ew#8hX</password>
         </server>        
     </servers>
       <pluginGroups>
